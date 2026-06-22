@@ -1,0 +1,113 @@
+.project-detail-section {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px 5%;
+  min-height: 80vh;
+}
+
+.back-button-container {
+  margin-bottom: 25px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-color);
+  opacity: 0.7;
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--primary-color);
+  opacity: 1;
+  transform: translateX(-4px);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.back-arrow {
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.back-link:hover .back-arrow {
+  transform: translateX(-2px);
+}
+
+.project-header {
+  margin-bottom: 50px;
+}
+
+.project-header h1 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.dashed-separator {
+  border: none;
+  border-top: 1px dashed rgba(255, 255, 255, 0.3);
+  margin: 20px 0;
+}
+
+.project-meta {
+  display: flex;
+  justify-content: flex-end;
+  gap: 60px;
+  margin-top: 20px;
+}
+
+.meta-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.meta-label {
+  font-size: 0.8rem;
+  color: #888;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 5px;
+}
+
+.meta-value {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.project-media-grid {
+  /* Using columns for a masonry-like effect as seen in the screenshot */
+  column-count: 2;
+  column-gap: 30px;
+}
+
+.media-item {
+  break-inside: avoid;
+  margin-bottom: 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: rgba(0,0,0,0.05);
+  display: block;
+}
+
+.project-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: black;
+}
+
+@media (max-width: 768px) {
+  .project-meta {
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+
+  .project-media-grid {
+    column-count: 1;
+  }
+}

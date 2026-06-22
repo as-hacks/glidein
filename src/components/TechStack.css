@@ -1,0 +1,132 @@
+.tech-stack-section {
+  padding: 60px 0 40px 0;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tech-stack-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.tech-stack-header h2 {
+  font-size: 2.5rem;
+  margin-bottom: 15px;
+}
+
+.tech-stack-header p {
+  color: #a0a0a0;
+  font-size: 1.1rem;
+}
+
+.marquee-container {
+  display: flex;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  /* Mask to fade edges for a seamless enter/exit */
+  mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+  -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+}
+
+.marquee-content {
+  display: flex;
+  gap: 20px;
+  padding-left: 20px;
+  animation: scrollMarquee 30s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+.marquee-content.reverse {
+  animation-direction: reverse;
+}
+
+.tech-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 28px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.03));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.08));
+  border-radius: 50px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-color, #ffffff);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tech-pill:hover {
+  background: var(--card-bg, rgba(255, 255, 255, 0.08));
+  border-color: var(--primary-color, rgba(255, 255, 255, 0.2));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px var(--glass-shadow, rgba(0, 0, 0, 0.2));
+}
+
+.tech-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--primary-color, #4facfe);
+  box-shadow: 0 0 10px var(--primary-color, #4facfe);
+}
+
+.stat-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 30px;
+  background: var(--glass-bg, rgba(255, 255, 255, 0.02));
+  border: 1px solid var(--glass-border, rgba(255, 255, 255, 0.05));
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.stat-pill:hover {
+  background: var(--card-bg, rgba(255, 255, 255, 0.05));
+  border-color: var(--primary-color, rgba(255, 255, 255, 0.15));
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px var(--glass-shadow, rgba(0, 0, 0, 0.2));
+}
+
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--secondary-color, #00f0ff); /* This gives it the bold, colored look */
+}
+
+.stat-label {
+  font-size: 1rem;
+  color: var(--text-color);
+  opacity: 0.7;
+  font-weight: 500;
+}
+
+/* Halfway translation because we duplicate the items once completely */
+@keyframes scrollMarquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .stat-value {
+  color: var(--primary-color);
+}

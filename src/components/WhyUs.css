@@ -1,0 +1,1797 @@
+.why-us-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 5%;
+  position: relative;
+  overflow: hidden;
+  background-color: #030008;
+}
+
+.why-us-container {
+  max-width: 1200px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.why-us-header {
+  text-align: center;
+  margin-bottom: 70px;
+}
+
+.why-us-header h2 {
+  font-size: 3.5rem;
+  margin-bottom: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+.why-us-subtitle {
+  font-size: 1.25rem;
+  color: #a0a0a5;
+  max-width: 800px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Two-column layout */
+.why-us-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 40px;
+  align-items: center;
+}
+
+/* LEFT COLUMN: PHONES SHOWCASE */
+.phone-showcase-column {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  min-height: 600px;
+  perspective: 1500px;
+}
+
+.phones-stack-container {
+  position: relative;
+  width: 290px;
+  height: 570px;
+  transform-style: preserve-3d;
+}
+
+/* Phone Bezel Shell Styling */
+.phone-shell {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 44px;
+  background: #000;
+  padding: 10px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8),
+              inset 0 0 0 2px rgba(255, 255, 255, 0.15);
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.8s ease,
+              z-index 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+  cursor: pointer;
+}
+
+/* Thin outer bezel border */
+.phone-bezel {
+  width: 100%;
+  height: 100%;
+  border-radius: 36px;
+  background: #0d0d0f;
+  position: relative;
+  overflow: hidden;
+  border: 4px solid #1a1a1e;
+}
+
+/* Dynamic Island */
+.phone-dynamic-island {
+  position: absolute;
+  top: 11px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 85px;
+  height: 22px;
+  background: #000;
+  border-radius: 12px;
+  z-index: 100;
+  box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+/* Inner screen content area */
+.phone-screen-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  color: #fff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  user-select: none;
+  font-size: 11px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Status Bar */
+.phone-status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 22px 6px;
+  z-index: 90;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: -0.1px;
+}
+
+.phone-icons {
+  display: flex;
+  gap: 4px;
+}
+
+/* Bottom gesture bar indicator */
+.phone-bottom-bar {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+  z-index: 100;
+}
+
+.phone-bottom-bar.bg-white {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* 3D STAGGERED OVERLAP POSITIONING STATES */
+
+/* State 0: Instagram Active */
+/* State 0: Instagram Active */
+.active-tab-0 .instagram-phone {
+  transform: translate3d(0, 0, 80px) rotateY(0deg) scale(1.05);
+  z-index: 10;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 35px 80px -15px rgba(225, 48, 108, 0.35),
+              0 0 30px rgba(225, 48, 108, 0.15);
+}
+.active-tab-0 .tiktok-phone {
+  transform: translate3d(60px, -10px, -30px) rotateY(-15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-0 .production-phone {
+  transform: translate3d(110px, -20px, -60px) rotateY(-25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+.active-tab-0 .delivery-phone {
+  transform: translate3d(-60px, 15px, -30px) rotateY(15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-0 .roi-phone {
+  transform: translate3d(-110px, 25px, -60px) rotateY(25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+/* State 1: TikTok Active */
+.active-tab-1 .tiktok-phone {
+  transform: translate3d(0, 0, 80px) rotateY(0deg) scale(1.05);
+  z-index: 10;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 35px 80px -15px rgba(0, 242, 254, 0.35),
+              0 0 30px rgba(0, 242, 254, 0.15);
+}
+.active-tab-1 .production-phone {
+  transform: translate3d(60px, -10px, -30px) rotateY(-15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-1 .delivery-phone {
+  transform: translate3d(110px, -20px, -60px) rotateY(-25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+.active-tab-1 .instagram-phone {
+  transform: translate3d(-60px, 15px, -30px) rotateY(15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-1 .roi-phone {
+  transform: translate3d(-110px, 25px, -60px) rotateY(25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+/* State 2: Production Active */
+.active-tab-2 .production-phone {
+  transform: translate3d(0, 0, 80px) rotateY(0deg) scale(1.05);
+  z-index: 10;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 35px 80px -15px rgba(168, 85, 247, 0.35),
+              0 0 30px rgba(168, 85, 247, 0.15);
+}
+.active-tab-2 .delivery-phone {
+  transform: translate3d(60px, -10px, -30px) rotateY(-15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-2 .roi-phone {
+  transform: translate3d(110px, -20px, -60px) rotateY(-25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+.active-tab-2 .tiktok-phone {
+  transform: translate3d(-60px, 15px, -30px) rotateY(15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-2 .instagram-phone {
+  transform: translate3d(-110px, 25px, -60px) rotateY(25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+/* State 3: Delivery Active */
+.active-tab-3 .delivery-phone {
+  transform: translate3d(0, 0, 80px) rotateY(0deg) scale(1.05);
+  z-index: 10;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 35px 80px -15px rgba(255, 140, 0, 0.35),
+              0 0 30px rgba(255, 140, 0, 0.15);
+}
+.active-tab-3 .roi-phone {
+  transform: translate3d(60px, -10px, -30px) rotateY(-15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-3 .instagram-phone {
+  transform: translate3d(110px, -20px, -60px) rotateY(-25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+.active-tab-3 .production-phone {
+  transform: translate3d(-60px, 15px, -30px) rotateY(15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-3 .tiktok-phone {
+  transform: translate3d(-110px, 25px, -60px) rotateY(25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+/* State 4: ROI Active */
+.active-tab-4 .roi-phone {
+  transform: translate3d(0, 0, 80px) rotateY(0deg) scale(1.05);
+  z-index: 10;
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 35px 80px -15px rgba(0, 230, 118, 0.35),
+              0 0 30px rgba(0, 230, 118, 0.15);
+}
+.active-tab-4 .instagram-phone {
+  transform: translate3d(60px, -10px, -30px) rotateY(-15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-4 .tiktok-phone {
+  transform: translate3d(110px, -20px, -60px) rotateY(-25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+.active-tab-4 .delivery-phone {
+  transform: translate3d(-60px, 15px, -30px) rotateY(15deg) scale(0.92);
+  z-index: 4;
+  opacity: 0.6;
+  filter: blur(1px);
+}
+.active-tab-4 .production-phone {
+  transform: translate3d(-110px, 25px, -60px) rotateY(25deg) scale(0.85);
+  z-index: 2;
+  opacity: 0.45;
+  filter: blur(2px);
+}
+
+
+/* ==========================================================================
+   HIGH-FIDELITY APP SCREEN INTERNAL UIs
+   ========================================================================== */
+
+/* App headers */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* 1. INSTAGRAM UI */
+.instagram-app-header .app-logo-font {
+  font-family: 'Outfit', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  background: linear-gradient(to right, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.app-header-icons {
+  display: flex;
+  gap: 12px;
+  font-size: 13px;
+}
+
+.instagram-profile-row {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+}
+
+.profile-pic-container {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  padding: 1.5px;
+  margin-right: 8px;
+}
+
+.profile-pic-avatar {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: #222;
+  border: 1.5px solid #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 10px;
+  color: #fff;
+}
+
+.profile-info {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.profile-username {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.verified-badge {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 9px;
+  height: 9px;
+  background: #3897f0;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 6px;
+  font-weight: bold;
+}
+
+.profile-location {
+  font-size: 8px;
+  color: #999;
+}
+
+.profile-options {
+  color: #999;
+  font-size: 9px;
+}
+
+/* Post Video Feel */
+.instagram-post-media {
+  height: 200px;
+  background: #111;
+  position: relative;
+  overflow: hidden;
+}
+
+.post-media-gradient {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #512159 0%, #160a22 100%);
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.18);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 14px;
+  padding-left: 2px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+}
+
+.audio-wave-overlay {
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 20px;
+}
+
+.audio-wave-overlay span {
+  display: block;
+  width: 2.5px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 1px;
+  animation: wavePulse 1.2s ease-in-out infinite alternate;
+}
+
+.audio-wave-overlay span.tall {
+  height: 15px;
+  animation-delay: 0.3s;
+}
+
+.audio-wave-overlay span.medium {
+  height: 10px;
+  animation-delay: 0.15s;
+}
+
+@keyframes wavePulse {
+  0% { height: 4px; }
+  100% { height: 18px; }
+}
+
+.instagram-post-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  font-size: 13px;
+}
+
+.left-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.instagram-post-text {
+  padding: 0 12px 10px;
+  line-height: 1.4;
+}
+
+.likes-count {
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+
+.caption {
+  color: #ddd;
+}
+
+/* 2. TIKTOK / SHORTS UI */
+.tiktok-screen {
+  background: #000 !important;
+}
+
+.tiktok-video-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg, #1f1b2c 0%, #0d0c15 100%);
+  z-index: 1;
+}
+
+.tiktok-grad-top {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 90px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2;
+}
+
+.tiktok-grad-bottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 150px;
+  background: linear-gradient(0deg, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0) 100%);
+  z-index: 2;
+}
+
+.tiktok-top-tabs {
+  position: absolute;
+  top: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 15px;
+  font-size: 12px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+}
+
+.tiktok-top-tabs span {
+  position: relative;
+  cursor: pointer;
+}
+
+.tiktok-top-tabs span.active-tab-line {
+  color: #fff;
+}
+
+.tiktok-top-tabs span.active-tab-line::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 20%;
+  width: 60%;
+  height: 2px;
+  background: #fff;
+  border-radius: 1px;
+}
+
+.tiktok-sidebar {
+  position: absolute;
+  right: 10px;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 10;
+}
+
+.sidebar-avatar-container {
+  position: relative;
+  margin-bottom: 5px;
+}
+
+.sidebar-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #00f2fe;
+  border: 1px solid #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 12px;
+  color: #000;
+}
+
+.sidebar-avatar-plus {
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  background: #fe2c55;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 800;
+}
+
+.sidebar-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebar-icon {
+  font-size: 20px;
+  filter: drop-shadow(0 2px 5px rgba(0,0,0,0.5));
+}
+
+.sidebar-label {
+  font-size: 9px;
+  font-weight: 600;
+  color: #fff;
+  margin-top: 2px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.sidebar-music-disc {
+  font-size: 18px;
+  animation: spinVinyl 3.5s linear infinite;
+}
+
+@keyframes spinVinyl {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.tiktok-meta {
+  position: absolute;
+  bottom: 35px;
+  left: 12px;
+  right: 65px;
+  z-index: 10;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.tiktok-username {
+  font-weight: 700;
+  font-size: 12px;
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.tiktok-desc {
+  font-size: 10px;
+  line-height: 1.4;
+  margin-bottom: 8px;
+  color: #f1f1f1;
+}
+
+.tiktok-music {
+  font-size: 9px;
+  color: #ccc;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* 3. CINEMATIC PRODUCTION UI */
+.production-screen {
+  background: url('/video_production.png') no-repeat center center !important;
+  background-size: cover !important;
+  position: relative;
+}
+
+.camera-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  opacity: 0.35;
+  z-index: 2;
+}
+
+.camera-grid-line-h1 {
+  grid-row: 2;
+  border-top: 1px dashed rgba(255, 255, 255, 0.4);
+  grid-column: 1 / span 3;
+}
+
+.camera-grid-line-h2 {
+  grid-row: 3;
+  border-top: 1px dashed rgba(255, 255, 255, 0.4);
+  grid-column: 1 / span 3;
+}
+
+.camera-grid-line-v1 {
+  grid-column: 2;
+  border-left: 1px dashed rgba(255, 255, 255, 0.4);
+  grid-row: 1 / span 3;
+}
+
+.camera-grid-line-v2 {
+  grid-column: 3;
+  border-left: 1px dashed rgba(255, 255, 255, 0.4);
+  grid-row: 1 / span 3;
+}
+
+.camera-focus-bracket {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 60px;
+  height: 60px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+  border-radius: 4px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.camera-focus-bracket::before,
+.camera-focus-bracket::after {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: #A855F7;
+  border-style: solid;
+}
+
+.camera-focus-bracket::before {
+  top: -2px;
+  left: -2px;
+  border-width: 2px 0 0 2px;
+}
+
+.camera-focus-bracket::after {
+  bottom: -2px;
+  right: -2px;
+  border-width: 0 2px 2px 0;
+}
+
+.production-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 35px 12px 5px;
+  font-size: 9px;
+  color: rgba(255, 255, 255, 0.9);
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+.camera-rec-status {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.camera-rec-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #ff3b30;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #ff3b30;
+  animation: blinkRed 1s infinite alternate;
+}
+
+@keyframes blinkRed {
+  0% { opacity: 0.2; }
+  100% { opacity: 1; }
+}
+
+.camera-settings {
+  display: flex;
+  gap: 8px;
+}
+
+.production-footer {
+  position: absolute;
+  bottom: 25px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+}
+
+.camera-audio-levels {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  background: rgba(0,0,0,0.5);
+  padding: 5px 8px;
+  border-radius: 6px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255,255,255,0.05);
+}
+
+.audio-channel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 7px;
+  color: rgba(255,255,255,0.7);
+}
+
+.audio-bar-bg {
+  flex: 1;
+  height: 3px;
+  background: rgba(255,255,255,0.15);
+  border-radius: 1px;
+  overflow: hidden;
+}
+
+.audio-bar-fill {
+  height: 100%;
+  width: 55%;
+  background: linear-gradient(to right, #05cd99 75%, #ffcc00 90%, #ff3b30 100%);
+  animation: audioPulse 1.5s ease infinite alternate;
+}
+
+.audio-bar-fill.ch2 {
+  width: 45%;
+  animation-delay: 0.3s;
+}
+
+@keyframes audioPulse {
+  0% { width: 30%; }
+  50% { width: 75%; }
+  100% { width: 55%; }
+}
+
+.production-bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 8px;
+  font-weight: 700;
+}
+
+.timecode-val {
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  background: rgba(0,0,0,0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #ff3b30;
+  box-shadow: 0 0 5px rgba(255, 59, 48, 0.3);
+}
+
+.camera-lens-val {
+  background: rgba(0,0,0,0.6);
+  padding: 2px 6px;
+  border-radius: 4px;
+  color: #fff;
+}
+
+/* Area sparkline path drawing trigger */
+.phone-shell.active svg path[stroke] {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: svgDrawLine 1.8s ease-out forwards;
+}
+
+@keyframes svgDrawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+
+/* ==========================================================================
+   4. AGILE DELIVERY & PERFORMANCE MOCKUP UI
+   ========================================================================== */
+
+/* A. DELIVERY DASHBOARD */
+.delivery-screen {
+  background: #090b0e !important;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.delivery-app-header {
+  padding: 35px 12px 8px;
+  background: #11141b;
+  border-bottom: 1px solid #1c212b;
+}
+
+.delivery-logo-font {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #ff8c00;
+  letter-spacing: 0.5px;
+}
+
+.delivery-active-status {
+  font-size: 8px;
+  color: #ff8c00;
+  background: rgba(255, 140, 0, 0.15);
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.delivery-campaign-card {
+  margin: 12px;
+  padding: 10px;
+  background: #11141b;
+  border: 1px solid #1c212b;
+  border-radius: 10px;
+}
+
+.campaign-info h5 {
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 2px;
+}
+
+.campaign-date {
+  font-size: 8px;
+  color: #888;
+}
+
+.campaign-progress-bar {
+  height: 5px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 3px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.campaign-progress-fill {
+  height: 100%;
+  background: linear-gradient(to right, #ff8c00, #ffb300);
+  border-radius: 3px;
+  animation: progressPulse 2s infinite ease-in-out;
+}
+
+@keyframes progressPulse {
+  0% { opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { opacity: 0.8; }
+}
+
+.campaign-eta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 8px;
+  color: #aaa;
+}
+
+.eta-badge {
+  color: #ff8c00;
+  font-weight: bold;
+}
+
+.delivery-timeline-steps {
+  margin: 0 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.timeline-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+}
+
+.timeline-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  left: 6px;
+  top: 14px;
+  width: 1px;
+  height: calc(100% + 2px);
+  background: rgba(255,255,255,0.1);
+}
+
+.timeline-step.done:not(:last-child)::after {
+  background: #ff8c00;
+}
+
+.step-check {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.1);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 7px;
+  font-weight: bold;
+  color: #888;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.timeline-step.done .step-check {
+  background: #ff8c00;
+  color: #000;
+  box-shadow: 0 0 8px rgba(255, 140, 0, 0.4);
+}
+
+.timeline-step.active .step-check {
+  background: #ff8c00;
+  color: #000;
+  animation: stepGlow 1.5s infinite alternate;
+}
+
+@keyframes stepGlow {
+  from { box-shadow: 0 0 2px rgba(255, 140, 0, 0.2); }
+  to { box-shadow: 0 0 10px rgba(255, 140, 0, 0.6); }
+}
+
+.step-info h6 {
+  font-size: 9.5px;
+  font-weight: bold;
+  color: #eee;
+  margin-bottom: 1px;
+}
+
+.step-info span {
+  font-size: 7.5px;
+  color: #777;
+}
+
+.step-info span.glowing-text {
+  color: #ff8c00;
+  font-weight: bold;
+}
+
+/* B. ROI / PERFORMANCE ANALYTICS UI */
+.roi-screen {
+  background: #06080b !important;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+.roi-app-header {
+  padding: 35px 12px 8px;
+  background: #0c0e14;
+  border-bottom: 1px solid #141822;
+}
+
+.roi-logo-font {
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #00e676;
+  letter-spacing: 0.5px;
+}
+
+.roi-active-status {
+  font-size: 8px;
+  color: #00e676;
+  background: rgba(0, 230, 118, 0.15);
+  padding: 2px 6px;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+.roi-summary-card {
+  margin: 12px;
+  padding: 10px;
+  background: #0c0e14;
+  border: 1px solid #141822;
+  border-radius: 10px;
+}
+
+.roi-summary-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.roi-summary-title h5 {
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+}
+
+.roi-metric-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.roi-metric-cell {
+  background: #06080b;
+  border-radius: 6px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.roi-cell-val {
+  font-size: 13px;
+  font-weight: bold;
+  color: #fff;
+}
+
+.roi-cell-lbl {
+  font-size: 7px;
+  color: #666;
+  margin-top: 1px;
+}
+
+.roi-cell-pct {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 7px;
+  color: #00e676;
+  font-weight: bold;
+}
+
+.roi-chart-area {
+  height: 35px;
+  background: #06080b;
+  border-radius: 6px;
+  padding: 2px;
+  overflow: hidden;
+}
+
+.roi-funnel-card {
+  margin: 0 12px;
+  background: #0c0e14;
+  border: 1px solid #141822;
+  border-radius: 10px;
+  padding: 10px;
+}
+
+.funnel-title {
+  font-size: 9px;
+  font-weight: bold;
+  margin-bottom: 6px;
+  color: #888;
+}
+
+.funnel-bars-container {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.funnel-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 7px;
+}
+
+.funnel-label {
+  width: 50px;
+  color: #ccc;
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.funnel-bar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.funnel-fill {
+  height: 100%;
+  border-radius: 2px;
+}
+
+.funnel-fill.f1 {
+  background: linear-gradient(to right, #00e676, #00b0ff);
+}
+
+.funnel-fill.f2 {
+  background: linear-gradient(to right, #00b0ff, #aa00ff);
+}
+
+.funnel-fill.f3 {
+  background: linear-gradient(to right, #aa00ff, #ff1744);
+}
+
+.funnel-val {
+  width: 20px;
+  text-align: right;
+  font-weight: bold;
+  color: #fff;
+}
+
+/* FLOATING BADGES FOR CARD 4 & 5 */
+.delivery-badge {
+  bottom: 40px;
+  right: -30px;
+  border: 1px solid rgba(255, 140, 0, 0.4);
+}
+
+.roi-badge {
+  bottom: 40px;
+  right: -30px;
+  border: 1px solid rgba(0, 230, 118, 0.4);
+}
+
+/* ==========================================================================
+   FLOATING ANALYTICS GLASS BADGES (GROWTH AND REACH DETAIL)
+   ========================================================================== */
+
+.floating-analytics-badge {
+  position: absolute;
+  z-index: 50;
+  width: 155px;
+  padding: 10px;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  animation: badgeFloating 3s ease-in-out infinite alternate;
+}
+
+.instagram-badge {
+  top: 135px;
+  right: -35px;
+  border: 1px solid rgba(225, 48, 108, 0.4);
+}
+
+.tiktok-badge {
+  top: 120px;
+  left: -35px;
+  border: 1px solid rgba(0, 242, 254, 0.4);
+}
+
+.production-badge {
+  bottom: 40px;
+  right: -30px;
+  border: 1px solid rgba(168, 85, 247, 0.4);
+}
+
+@keyframes badgeFloating {
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-8px) rotate(1.5deg);
+  }
+}
+
+.badge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 4px;
+}
+
+.badge-tag {
+  font-size: 7px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #bbb;
+}
+
+.badge-trend-icon {
+  font-size: 8px;
+}
+
+.badge-main {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 4px;
+}
+
+.badge-percentage {
+  font-size: 18px;
+  font-weight: 800;
+  color: #05cd99;
+  letter-spacing: -0.5px;
+  text-shadow: 0 0 10px rgba(5, 205, 153, 0.2);
+}
+
+.badge-label {
+  font-size: 8px;
+  color: #888;
+}
+
+.badge-sparkline {
+  height: 25px;
+  overflow: hidden;
+  margin-top: 2px;
+}
+
+/* TikTok badge sub elements */
+.badge-views-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 8px;
+  color: #ccc;
+  margin-bottom: 5px;
+}
+
+.badge-sub-val {
+  font-weight: bold;
+}
+
+.retention-graph-bar {
+  width: 100%;
+  height: 4px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.retention-fill-bar {
+  height: 100%;
+  background: linear-gradient(to right, #00f2fe, #4facfe);
+  border-radius: 2px;
+  box-shadow: 0 0 8px rgba(0, 242, 254, 0.6);
+}
+
+
+/* ==========================================================================
+   RIGHT COLUMN: INTERACTIVE FEATURE LIST
+   ========================================================================== */
+
+.features-list-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.features-stack {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.interactive-feature-card:nth-child(5) {
+  grid-column: span 2;
+}
+
+.interactive-feature-card {
+  padding: 16px;
+  border-radius: 16px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+              background 0.4s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.interactive-feature-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.interactive-feature-card.active {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Custom Platform Glowing shadows for active cards */
+.interactive-feature-card.active:nth-child(1) {
+  box-shadow: 0 10px 40px -15px rgba(225, 48, 108, 0.2);
+}
+.interactive-feature-card.active:nth-child(2) {
+  box-shadow: 0 10px 40px -15px rgba(0, 242, 254, 0.2);
+}
+.interactive-feature-card.active:nth-child(3) {
+  box-shadow: 0 10px 40px -15px rgba(168, 85, 247, 0.2);
+}
+.interactive-feature-card.active:nth-child(4) {
+  box-shadow: 0 10px 40px -15px rgba(255, 140, 0, 0.2);
+}
+.interactive-feature-card.active:nth-child(5) {
+  box-shadow: 0 10px 40px -15px rgba(0, 230, 118, 0.2);
+}
+
+.feature-card-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.feature-icon-wrapper {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.feature-main-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature-main-info h3 {
+  font-size: 1.125rem;
+  font-weight: 700;
+  margin: 0 0 1px 0;
+  letter-spacing: -0.01em;
+}
+
+.feature-platform-tag {
+  font-size: 7.5px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  color: #888;
+}
+
+.feature-desc {
+  color: #a0a0a5;
+  font-size: 0.825rem;
+  line-height: 1.45;
+  margin-bottom: 12px;
+}
+
+/* Feature stats inside the card */
+.feature-metrics-panel {
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+  padding-top: 10px;
+}
+
+.feature-metric-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.metric-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.metric-val {
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.metric-lbl {
+  font-size: 0.7rem;
+  color: #666;
+}
+
+.metric-badge {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+}
+
+/* Active timing progress bar indicators */
+.active-progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: transparent;
+}
+
+.active-progress-fill {
+  height: 100%;
+  width: 0;
+}
+
+
+/* ==========================================================================
+   LIGHT MODE DESIGN SPECIFICATIONS (RUST THEME BACKDROP)
+   ========================================================================== */
+
+[data-theme="light"] .why-us-section {
+  background-color: var(--primary-color); /* Elegant Rust color: #A15C38 */
+}
+
+/* Contrast adjustment for elements on Rust theme */
+[data-theme="light"] .why-us-section .why-us-subtitle {
+  color: #f1e5e3;
+}
+
+[data-theme="light"] .why-us-section h2 {
+  color: #ffffff;
+}
+
+[data-theme="light"] .why-us-section .gradient-text {
+  background: linear-gradient(90deg, #F7F1F0, #E8D5D2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Frosted glass features in light/rust mode */
+[data-theme="light"] .why-us-section .interactive-feature-card {
+  background: rgba(247, 241, 240, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card:hover {
+  background: rgba(247, 241, 240, 0.18);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card.active {
+  background: rgba(247, 241, 240, 0.95); /* Full contrast readable background */
+  border-color: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 15px 40px rgba(38, 34, 32, 0.15);
+}
+
+/* Stat color adjustments inside active cards in light mode */
+[data-theme="light"] .why-us-section .interactive-feature-card.active .feature-main-info h3 {
+  color: #262220; /* Dark contrast */
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card.active .feature-desc {
+  color: #4a4542;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card.active .metric-lbl {
+  color: #7a7370;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card.active .feature-platform-tag {
+  color: #8a827e;
+}
+
+/* Hovered inactive text visibility */
+[data-theme="light"] .why-us-section .interactive-feature-card h3 {
+  color: #ffffff;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card .feature-desc {
+  color: #f7ede9;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card .metric-lbl {
+  color: #e5d5d0;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card .feature-platform-tag {
+  color: #ebdcd7;
+}
+
+[data-theme="light"] .why-us-section .interactive-feature-card.active .metric-val {
+  /* Retain color from state details for specific identity */
+}
+
+/* Glassmorphic overlays inside the phone shells should also look perfect in light/rust mode */
+.why-us-section .floating-analytics-badge {
+  background: rgba(18, 14, 25, 0.8);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+
+/* ==========================================================================
+   RESPONSIVENESS AND MOBILE BREAKPOINTS
+   ========================================================================== */
+
+@media (max-width: 1024px) {
+  .why-us-section {
+    padding: 80px 4%;
+  }
+  
+  .why-us-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  
+  .phone-showcase-column {
+    min-height: 520px;
+    order: 2; /* Mobile screen first, text follows or vice versa. Let's stack phones below header/description then features list */
+  }
+  
+  .why-us-header {
+    margin-bottom: 40px;
+  }
+  
+  .why-us-header h2 {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .why-us-section {
+    padding: 60px 3%;
+  }
+
+  .why-us-header h2 {
+    font-size: 2.2rem;
+  }
+  
+  .why-us-subtitle {
+    font-size: 1rem;
+  }
+
+  .phone-showcase-column {
+    min-height: 480px;
+  }
+
+  .phones-stack-container {
+    width: 230px;
+    height: 450px;
+  }
+
+  .phone-dynamic-island {
+    width: 65px;
+    height: 18px;
+    top: 8px;
+  }
+  
+  .phone-shell {
+    border-radius: 32px;
+    border: 7px solid #1a1a1a;
+    padding: 6px;
+  }
+  
+  .phone-bezel {
+    border-radius: 26px;
+    border-width: 3px;
+  }
+
+  /* Scale down floating badges for mobile space constraint */
+  .floating-analytics-badge {
+    width: 110px;
+    padding: 6px;
+    border-radius: 10px;
+  }
+
+  .badge-percentage {
+    font-size: 13px;
+  }
+
+  .badge-label {
+    font-size: 6px;
+  }
+
+  .badge-tag {
+    font-size: 5.5px;
+  }
+  
+  .badge-sparkline {
+    height: 18px;
+  }
+
+  .instagram-badge {
+    top: 100px;
+    right: -25px;
+  }
+
+  .tiktok-badge {
+    top: 90px;
+    left: -25px;
+  }
+
+  .production-badge,
+  .delivery-badge,
+  .roi-badge {
+    bottom: 30px;
+    right: -20px;
+  }
+
+  .instagram-post-media {
+    height: 140px;
+  }
+  
+  .play-button-overlay {
+    width: 30px;
+    height: 30px;
+    font-size: 10px;
+  }
+
+  .tiktok-sidebar {
+    gap: 8px;
+    right: 6px;
+    bottom: 40px;
+  }
+
+  .sidebar-avatar {
+    width: 22px;
+    height: 22px;
+    font-size: 9px;
+  }
+  
+  .sidebar-icon {
+    font-size: 14px;
+  }
+
+  .sidebar-label {
+    font-size: 7px;
+  }
+
+  .tiktok-meta {
+    right: 45px;
+    bottom: 25px;
+  }
+  
+  .tiktok-desc {
+    font-size: 8px;
+    margin-bottom: 4px;
+  }
+
+  .features-stack {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .interactive-feature-card:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .interactive-feature-card {
+    padding: 14px;
+  }
+
+  .feature-icon-wrapper {
+    width: 34px;
+    height: 34px;
+    font-size: 16px;
+  }
+
+  .feature-main-info h3 {
+    font-size: 1.05rem;
+  }
+
+  .feature-desc {
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+  }
+
+  .metric-val {
+    font-size: 1.15rem;
+  }
+}

@@ -1,0 +1,209 @@
+.portfolio-section {
+  height: 100vh;
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+  background: transparent;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start; /* anchor wrapper to left — center shifts it mid-carousel */
+  padding: 0 !important;
+}
+
+.portfolio-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  height: 100%;
+  width: max-content;
+  will-change: transform;
+  gap: 0;
+}
+
+.portfolio-slide {
+  width: 75vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  padding: 0;
+}
+
+.portfolio-item-inner {
+  width: 100%;
+  height: 85vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid var(--glass-border);
+  border-radius: 32px;
+}
+
+.image-container {
+  flex-grow: 1;
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  will-change: transform;
+}
+
+.project-details {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.details-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--primary-color);
+  /* Use primary color for better visibility */
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.details-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.project-name {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  margin: 0;
+  font-weight: 800;
+  line-height: 0.9;
+  color: var(--text-color);
+  /* Dynamic color for theme contrast */
+  text-transform: uppercase;
+}
+
+.project-arrow {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  border: 1px solid var(--glass-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-arrow {
+  background: var(--primary-color);
+  color: #fff;
+  border-color: var(--primary-color);
+  transform: rotate(45deg);
+}
+
+.project-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Header Slide Styles */
+.header-slide {
+  width: 100vw !important;
+}
+
+.header-slide .portfolio-item-inner {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0 5vw;
+}
+
+.header-slide .section-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  line-height: 0.8;
+  margin-bottom: 20px;
+  background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+.header-slide .section-desc {
+  font-size: 1rem;
+  color: #a0a0a5;
+  max-width: 500px;
+}
+
+/* Explore Slide Styles */
+.explore-slide {
+  width: 100vw !important; /* fills viewport when carousel ends, matching header slide */
+}
+
+.explore-slide .portfolio-item-inner {
+  background: transparent;
+  border: none;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+.explore-content {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.explore-content h3 {
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  font-weight: 800;
+}
+
+.explore-content p {
+  color: #a0a0a5;
+  font-size: 1rem;
+  margin-bottom: 28px;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .portfolio-slide {
+    width: 100vw;
+  }
+
+  .project-details {
+    padding: 15px;
+  }
+
+  .project-name {
+    font-size: 1.8rem;
+  }
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] .header-slide .section-title {
+  background: linear-gradient(90deg, #262220, #A15C38);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

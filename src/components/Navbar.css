@@ -1,0 +1,232 @@
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  width: 95%;
+  max-width: 1600px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 28px;
+  z-index: 1000;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transform: translateX(-50%);
+
+  /* Default State (Top of page): Transparent to show the hero section */
+  background: transparent;
+  border: 1px solid transparent;
+  box-shadow: none;
+}
+
+.navbar.hidden {
+  transform: translateX(-50%) translateY(-150%) !important;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+/* Base pseudo-element for glassmorphism */
+.navbar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0; /* Hidden by default when transparent */
+  pointer-events: none;
+}
+
+.navbar:hover {
+  transform: translateX(-50%) translateY(-2px);
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 8px 32px var(--glass-shadow),
+    inset 0 1px 0 var(--glass-inner-glow);
+}
+
+.navbar:hover::before {
+  opacity: 1;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+}
+
+.navbar.scrolled {
+  padding: 10px 28px;
+  width: 98%;
+  max-width: 1700px;
+  top: 10px;
+  border: 1px solid var(--glass-border);
+  box-shadow:
+    0 6px 30px var(--glass-shadow),
+    inset 0 1px 0 var(--glass-inner-glow);
+}
+
+.navbar.scrolled::before {
+  opacity: 1;
+  background: var(--glass-bg);
+  backdrop-filter: blur(16px);
+  
+  /* Chrome Flickering Fixes (Hardware Acceleration) */
+  transform: translate3d(0,0,0);
+  backface-visibility: hidden;
+  perspective: 1000;
+}
+
+
+.logo {
+  font-weight: 800;
+  font-size: 1.5rem;
+  letter-spacing: -1px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  align-items: center;
+}
+
+.nav-links a {
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.nav-links a:hover {
+  color: var(--primary-color);
+  transform: translateY(-2px);
+  text-shadow: 0 0 10px var(--primary-glow);
+}
+
+.btn-primary {
+  background: var(--primary-color);
+  color: #ffffff !important;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px var(--primary-glow);
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-primary:hover {
+  background: var(--secondary-color);
+  color: #000000 !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px var(--secondary-glow);
+}
+
+.theme-toggle {
+  background: none;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  padding: 5px;
+  transition: transform 0.3s;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* Hamburger Menu styles */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  z-index: 1001;
+  /* Ensure it stays above the open menu */
+}
+
+.hamburger .bar {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+/* Hamburger animations */
+.hamburger.active .bar:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: calc(100% - 10px);
+    left: 0;
+    right: 0;
+    margin-top: 15px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    flex-direction: column;
+    padding: 30px;
+    gap: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5), inset 0 0 0 1px var(--glass-inner-glow);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity, top;
+  }
+
+  .nav-links.open {
+    opacity: 1;
+    pointer-events: all;
+    top: 100%;
+  }
+}
+.theme-toggle {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+}
+
+.theme-toggle:hover {
+  background: var(--glass-bg);
+  border-color: var(--glass-border);
+  transform: rotate(15deg);
+}
+
+.theme-icon {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sun-icon {
+  color: var(--text-color);
+}
+
+.moon-icon {
+  color: var(--text-color);
+  fill: currentColor; /* Make moon solid */
+}
