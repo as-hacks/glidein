@@ -52,6 +52,17 @@ const Footer = ({ settings }) => {
             <li><Link href="/work-with-us">Careers</Link></li>
           </ul>
         </div>
+        <div className="footer-links">
+          <h3>Locations</h3>
+          <ul>
+            <li><Link href="/location/video-production-company-ujjain">Ujjain</Link></li>
+            <li><Link href="/location/video-production-company-indore">Indore</Link></li>
+            <li><Link href="/location/video-production-company-bhopal">Bhopal</Link></li>
+            <li><Link href="/location/production-house-madhya-pradesh">Madhya Pradesh</Link></li>
+            <li><Link href="/location/production-house-india">India</Link></li>
+            <li><Link href="/location" style={{ opacity: 0.9, fontWeight: '600', color: 'var(--secondary-color, #00f0ff)' }}>View All Areas →</Link></li>
+          </ul>
+        </div>
         <div className="footer-contact">
           <h3>Contact</h3>
           <p><a href={`mailto:${settings.contact_email}`}>{settings.contact_email}</a></p>

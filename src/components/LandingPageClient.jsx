@@ -8,6 +8,21 @@ export default function LandingPageClient({ children }) {
   const [isLeaving, setIsLeaving] = useState(false);
 
   useEffect(() => {
+    // Check session flags to avoid playing intro repeatedly
+    const hasSeenIntro = sessionStorage.getItem('hasSeenIntro');
+    const forceIntro = sessionStorage.getItem('forceIntro');
+
+    if (hasSeenIntro === 'true' && forceIntro !== 'true') {
+      setShowIntro(false);
+    } else {
+      setShowIntro(true);
+      // Mark as seen and clear the force trigger
+      sessionStorage.setItem('hasSeenIntro', 'true');
+      sessionStorage.removeItem('forceIntro');
+    }
+  }, []);
+
+  useEffect(() => {
     if (!showIntro) {
       const scrollToId = sessionStorage.getItem('scrollTo');
       if (scrollToId) {

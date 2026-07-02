@@ -1,12 +1,46 @@
 import { supabase } from '@/supabaseClient';
+import { slugify } from '@/utils/slugify';
+import ScrollLink from '@/components/ScrollLink';
+import '@/components/ServicePage.css';
+
+// Helper to look up a service by slug or UUID
+async function getServiceBySlug(slug) {
+  if (!slug) return null;
+
+  // Check if slug is a valid UUID (legacy fallback)
+  const isUuid = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(slug);
+  if (isUuid) {
+    const { data } = await supabase
+      .from('services')
+      .select('*')
+      .eq('id', slug)
+      .single();
+    if (data) return data;
+  }
+
+  // Fetch all service titles and IDs to locate matches
+  const { data: list } = await supabase
+    .from('services')
+    .select('id, title');
+
+  if (!list) return null;
+
+  const matched = list.find(s => slugify(s.title) === slug);
+  if (!matched) return null;
+
+  // Fetch the full details for the matched service
+  const { data } = await supabase
+    .from('services')
+    .select('*')
+    .eq('id', matched.id)
+    .single();
+
+  return data;
+}
 
 export async function generateMetadata({ params }) {
-  const { id } = await params;
-  const { data: service } = await supabase
-    .from('services')
-    .select('title, description')
-    .eq('id', id)
-    .single();
+  const { slug } = await params;
+  const service = await getServiceBySlug(slug);
 
   if (!service) {
     return { title: 'Service Not Found | Glidein Studios' };
@@ -17,20 +51,13 @@ export async function generateMetadata({ params }) {
     description: service.description,
   };
 }
-import ScrollLink from '@/components/ScrollLink';
-import '@/components/ServicePage.css';
 
 export default async function ServicePage({ params }) {
-  const { id } = await params;
+  const { slug } = await params;
+  const service = await getServiceBySlug(slug);
 
-  const { data: service, error } = await supabase
-    .from('services')
-    .select('*')
-    .eq('id', id)
-    .single();
-
-  if (error || !service) {
-    return <div className="loading">Service not found.</div>;
+  if (!service) {
+    return <div className="loading" style={{ color: 'var(--text-color)', padding: '120px 20px', textAlign: 'center' }}>Service not found.</div>;
   }
 
   return (

@@ -7,6 +7,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
 import './Services.css';
 
+import { slugify } from '../utils/slugify';
+
 gsap.registerPlugin(ScrollTrigger);
 
 const Services = () => {
@@ -152,7 +154,7 @@ const Services = () => {
             const displayIcon = getServiceIcon(service.icon, index);
 
             return (
-              <Link href={`/service/${service.id}`} key={service.id} className="service-card glass-panel">
+              <Link href={`/service/${slugify(service.title)}`} key={service.id} className="service-card glass-panel">
                 <div className="service-icon">{displayIcon}</div>
                 <h3 className="service-title">{service.title}</h3>
                 <p className="service-description">{service.description}</p>

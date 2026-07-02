@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import Link from 'next/link';
+import { slugify } from '../utils/slugify';
 import './PortfolioList.css';
 
 export default function PortfolioListClient() {
@@ -51,7 +52,7 @@ export default function PortfolioListClient() {
 
           {projects.map((project) => (
             <Link
-              href={`/portfolio/${project.id}`}
+              href={`/portfolio/${slugify(project.title)}`}
               key={project.id}
               className="portfolio-card"
             >

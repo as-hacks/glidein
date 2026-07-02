@@ -88,10 +88,14 @@ const Navbar = ({ settings, theme, toggleTheme }) => {
           href="/"
           style={{ color: 'inherit', textDecoration: 'none' }}
           onClick={(e) => {
+            // Set flag to force intro animation on home mount
+            sessionStorage.setItem('forceIntro', 'true');
+            sessionStorage.removeItem('hasSeenIntro');
+
             if (pathname === '/') {
-              // Already on home — scroll to top instead of re-navigating
+              // Already on home — force reload to play intro again
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              window.location.href = '/';
             }
           }}
         >

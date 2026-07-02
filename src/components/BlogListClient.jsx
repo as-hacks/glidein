@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { slugify } from '../utils/slugify';
 import './Blog.css';
 
 export default function BlogListClient({ initialBlogs }) {
@@ -78,7 +79,7 @@ export default function BlogListClient({ initialBlogs }) {
             {filteredBlogs.map(blog => {
               const tagsArray = blog.tags ? blog.tags.split(',').map(t => t.trim()).filter(t => t) : [];
               return (
-                <Link href={`/blog/${blog.id}`} key={blog.id} className="blog-card glass-panel" style={{ textDecoration: 'none' }}>
+                <Link href={`/blog/${slugify(blog.title)}`} key={blog.id} className="blog-card glass-panel" style={{ textDecoration: 'none' }}>
                   {blog.image_url && (
                     <div className="blog-image-wrapper">
                       <img src={blog.image_url} alt={blog.title} className="blog-image" />

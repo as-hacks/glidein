@@ -5,6 +5,7 @@ import { supabase } from '../supabaseClient';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Link from 'next/link';
+import { slugify } from '../utils/slugify';
 import './Portfolio.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -177,7 +178,7 @@ const Portfolio = () => {
           {projects.length > 0 ? (
             projects.map((project) => (
               <div key={project.id} className="portfolio-slide">
-                <Link href={`/portfolio/${project.id}`} className="portfolio-item-inner project-card">
+                <Link href={`/portfolio/${slugify(project.title)}`} className="portfolio-item-inner project-card">
                   <div className="image-container">
                     <div
                       className="project-image"
