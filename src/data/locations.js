@@ -65,10 +65,10 @@ export const locationsRegistry = {
   "digital-marketing-agency-ujjain": {
     slug: "digital-marketing-agency-ujjain",
     location: "Ujjain",
-    service: "Digital Marketing Agency",
-    title: "Digital Marketing Agency in Ujjain | SEO, Social Media & Branding",
-    metaDesc: "Looking to grow your online presence? Glide.in is the best digital marketing agency in Ujjain, offering local SEO, social media management, and web design services.",
-    keywords: ["digital marketing agency ujjain", "seo services ujjain", "social media management ujjain", "branding agency ujjain", "local marketing ujjain"],
+    service: "Growth Marketing Agency",
+    title: "Growth Marketing Agency in Ujjain | SEO, Social Media & Branding",
+    metaDesc: "Looking to grow your online presence? Glide.in is the best growth marketing agency in Ujjain, offering local SEO, social media management, and web design services.",
+    keywords: ["growth marketing agency ujjain", "seo services ujjain", "social media management ujjain", "branding agency ujjain", "local marketing ujjain"],
     cityContext: "Ujjain's business community, where building strong organic search visibility and social authority is key to capturing local and regional market share.",
     serviceContext: "comprehensive search engine optimization (SEO), social media branding, local map SEO pack optimization, and high-impact design strategies."
   },
@@ -85,10 +85,10 @@ export const locationsRegistry = {
   "digital-marketing-agency-indore": {
     slug: "digital-marketing-agency-indore",
     location: "Indore",
-    service: "Digital Marketing Agency",
-    title: "Top Digital Marketing Agency in Indore | SEO & Brand Growth",
-    metaDesc: "Scale your business with Indore's top digital marketing agency. We design result-driven SEO campaigns, social media strategies, and high-converting web designs.",
-    keywords: ["digital marketing agency indore", "seo company indore", "social media marketing indore", "website design indore", "brand agency indore"],
+    service: "Growth Marketing Agency",
+    title: "Top Growth Marketing Agency in Indore | SEO & Brand Growth",
+    metaDesc: "Scale your business with Indore's top growth marketing agency. We design result-driven SEO campaigns, social media strategies, and high-converting web designs.",
+    keywords: ["growth marketing agency indore", "seo company indore", "social media marketing indore", "website design indore", "brand agency indore"],
     cityContext: "the commercial powerhouse of Indore, where businesses face high competition and require modern digital branding to stay visible and relevant.",
     serviceContext: "advanced search engine marketing, full-funnel optimization, performance SEO, social media authority building, and content marketing."
   },
@@ -105,10 +105,10 @@ export const locationsRegistry = {
   "digital-marketing-agency-bhopal": {
     slug: "digital-marketing-agency-bhopal",
     location: "Bhopal",
-    service: "Digital Marketing Agency",
-    title: "Digital Marketing Agency in Bhopal | Local SEO & Social Media",
-    metaDesc: "Bhopal's premium digital marketing agency. We specialize in local search optimization, content strategy, brand identity design, and social media marketing.",
-    keywords: ["digital marketing agency bhopal", "seo agency bhopal", "social media marketing bhopal", "branding company bhopal", "leads marketing bhopal"],
+    service: "Growth Marketing Agency",
+    title: "Growth Marketing Agency in Bhopal | Local SEO & Social Media",
+    metaDesc: "Bhopal's premium growth marketing agency. We specialize in local search optimization, content strategy, brand identity design, and social media marketing.",
+    keywords: ["growth marketing agency bhopal", "seo agency bhopal", "social media marketing bhopal", "branding company bhopal", "leads marketing bhopal"],
     cityContext: "Bhopal's diverse market, requiring a balanced marketing approach that honors heritage while leveraging cutting-edge web strategies to capture new clients.",
     serviceContext: "integrated inbound marketing, local SEO pack expansion, web development, content writing, and hyper-targeted lead generation."
   },
@@ -125,10 +125,10 @@ export const locationsRegistry = {
   "digital-marketing-agency-delhi": {
     slug: "digital-marketing-agency-delhi",
     location: "Delhi",
-    service: "Digital Marketing Agency",
-    title: "Digital Marketing Agency in Delhi NCR | Performance Ads & SEO",
-    metaDesc: "Scale your national presence with a top-rated digital marketing agency in Delhi. We drive high ROI using advanced search SEO, Meta Ads, and full-funnel marketing.",
-    keywords: ["digital marketing agency delhi", "seo services delhi ncr", "meta ads agency delhi", "ppc services delhi", "brand marketing delhi"],
+    service: "Growth Marketing Agency",
+    title: "Growth Marketing Agency in Delhi NCR | Performance Ads & SEO",
+    metaDesc: "Scale your national presence with a top-rated growth marketing agency in Delhi. We drive high ROI using advanced search SEO, Meta Ads, and full-funnel marketing.",
+    keywords: ["growth marketing agency delhi", "seo services delhi ncr", "meta ads agency delhi", "ppc services delhi", "brand marketing delhi"],
     cityContext: "the massive, highly competitive Delhi NCR market, encompassing top-tier corporations, e-commerce giants, and service leaders.",
     serviceContext: "hyper-targeted performance campaigns, enterprise-level SEO, programmatic media buying, conversion rate optimization, and brand consulting."
   },
@@ -170,7 +170,7 @@ export function generateLocationContent(slug) {
       paragraphs: [
         `Establishing brand authority in the modern market is harder than ever. Audiences have developed high digital literacy and extremely short attention spans, routinely scrolling past standard ads or low-effort social updates in less than two seconds. For businesses investing in ${keywords[0]}, the main barrier is often overcoming visual noise and building real authority. Without premium aesthetics and a structured funnel, visual content is ignored and advertising budgets are spent without seeing a clear return.`,
         `In addition, localized markets within ${location} have unique customer retention traits. Consumers search differently, react to different hooks, and have varying degrees of trust in online messaging. Many generic agencies try to apply identical cookie-cutter strategies across Delhi, Mumbai, and smaller cities like Ujjain. This disconnect leads to high customer acquisition costs and low conversion rates. A local business cannot scale using a national template, just as a national brand cannot capture local markets without localized context.`,
-        `Glide.in Studios solves this problem by integrating production and marketing under one unified workflow. We combine professional cinematography (using RED/ARRI standards, professional lighting, and top-tier color grading) with precise digital marketing frameworks. This ensures that every visual asset we produce is optimized for its target platform, whether it is an Instagram Reel designed to hook viewers in 3 seconds, or a landing page designed to capture high-intent leads.`
+        `Glide.in Studios solves this problem by integrating production and marketing under one unified workflow. We combine professional cinematography (using RED/ARRI standards, professional lighting, and top-tier color grading) with precise growth marketing frameworks. This ensures that every visual asset we produce is optimized for its target platform, whether it is an Instagram Reel designed to hook viewers in 3 seconds, or a landing page designed to capture high-intent leads.`
       ]
     },
 
@@ -224,7 +224,7 @@ export function generateLocationContent(slug) {
       },
       {
         q: `What is the typical turnaround time for a video production or marketing setup?`,
-        a: `For video assets, our standard turnaround is 48 to 72 hours depending on the complexity of the shoot and editing requirements. For comprehensive digital marketing campaigns, setup and launch typically take 7 to 10 days, allowing us to perform thorough keyword research, build tracking funnels, and design the initial creative sets.`
+        a: `For video assets, our standard turnaround is 48 to 72 hours depending on the complexity of the shoot and editing requirements. For comprehensive growth marketing campaigns, setup and launch typically take 7 to 10 days, allowing us to perform thorough keyword research, build tracking funnels, and design the initial creative sets.`
       },
       {
         q: `Do you work with local businesses as well as national brands?`,

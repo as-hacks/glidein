@@ -43,12 +43,12 @@ export async function generateMetadata({ params }) {
   const service = await getServiceBySlug(slug);
 
   if (!service) {
-    return { title: 'Service Not Found | Glidein Studios' };
+    return { title: { absolute: 'Service Not Found | Glide.in Studios' } };
   }
 
   return {
-    title: `${service.title} | Glidein Services`,
-    description: service.description,
+    title: { absolute: `${service.title} Services | Video & Growth Marketing | Glide.in Studios` },
+    description: `${service.description} Get top-tier professional ${service.title} in Indore, Bhopal, Ujjain, Madhya Pradesh, and across India.`,
   };
 }
 

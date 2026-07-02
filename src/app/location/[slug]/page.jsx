@@ -18,20 +18,20 @@ export async function generateMetadata({ params }) {
   
   if (!content) {
     return {
-      title: 'Page Not Found | Glide.in Studios',
+      title: { absolute: 'Page Not Found | Glide.in Studios' },
       description: 'The requested location-specific page could not be found.',
     };
   }
 
   return {
-    title: content.title,
+    title: { absolute: content.title },
     description: content.metaDesc,
     keywords: content.keywords,
     alternates: {
       canonical: `https://glidein.in/location/${slug}`,
     },
     openGraph: {
-      title: content.title,
+      title: { absolute: content.title },
       description: content.metaDesc,
       url: `https://glidein.in/location/${slug}`,
       type: 'article',

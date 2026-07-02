@@ -32,13 +32,13 @@ export async function generateMetadata({ params }) {
   const project = await getProjectBySlug(slug);
 
   if (!project) {
-    return { title: 'Project Details | Glidein Studios' };
+    return { title: { absolute: 'Project Details | Glide.in Studios' } };
   }
 
   const clientStr = project.client_name ? ` for ${project.client_name}` : '';
   return {
-    title: `${project.title}${clientStr}`,
-    description: `Explore the creative process and results for ${project.title}${clientStr}, executed by Glidein Studios.`,
+    title: { absolute: `${project.title}${clientStr} | Case Study | Glide.in Studios` },
+    description: `Explore the creative process and results for ${project.title}${clientStr}, executed by Glide.in Studios, the premier production house in Madhya Pradesh, India.`,
   };
 }
 

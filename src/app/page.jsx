@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Glidein Studios | Cinematic Video Production & Digital Marketing',
-  description: 'Welcome to Glidein Studios. We combine high-end cinematic video production with performance digital marketing to grow your brand. See our creative showreel.',
+  title: 'Glide.in Studios | Video Production & Performance Marketing',
+  description: 'Welcome to Glide.in Studios. We combine high-end cinematic video production with data-driven performance marketing to scale your brand. View our creative portfolio.',
 };
 
 import { supabase } from '@/supabaseClient';

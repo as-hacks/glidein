@@ -42,16 +42,16 @@ export async function generateMetadata({ params }) {
   const blog = await getBlogBySlug(slug);
 
   if (!blog) {
-    return { title: 'Blog Not Found | Glidein Studios' };
+    return { title: { absolute: 'Blog Not Found | Glide.in Studios' } };
   }
 
   // Extract a snippet of the content for the description
   const description = blog.content
     ? blog.content.substring(0, 160).replace(/<[^>]+>/g, '') + '...'
-    : 'Read this article on the Glidein Studios blog.';
+    : 'Read this article on the Glide.in Studios blog.';
 
   return {
-    title: `${blog.title} | Glidein Studios`,
+    title: { absolute: `${blog.title} | Insights Blog | Glide.in Studios` },
     description,
   };
 }

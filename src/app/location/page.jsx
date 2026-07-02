@@ -4,8 +4,8 @@ import { locationsRegistry } from '@/data/locations';
 import '@/components/LocationPage.css';
 
 export const metadata = {
-  title: 'Our Target Locations | Glide.in Studios',
-  description: 'Explore the regional digital marketing, corporate video production, and editing services offered by Glide.in Studios across Ujjain, Indore, Bhopal, Madhya Pradesh, and other hubs in India.',
+  title: { absolute: 'Our Target Locations | Glide.in Studios' },
+  description: 'Explore the regional growth marketing, corporate video production, and editing services offered by Glide.in Studios across Ujjain, Indore, Bhopal, Madhya Pradesh, and other hubs in India.',
   keywords: ['locations', 'video production ujjain', 'marketing agency indore', 'seo agency bhopal', 'glidein locations'],
 };
 

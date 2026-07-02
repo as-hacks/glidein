@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Join Our Creative Team | Glidein Studios',
-  description: 'We are always looking for creative minds and skilled individuals. Share your work and let\'s build something extraordinary together.',
+  title: { absolute: 'Careers in Video Production & Growth Marketing | Glide.in Studios' },
+  description: 'Join the top creative agency in Madhya Pradesh, India. Apply for director, editor, marketer, or designer roles and build extraordinary brand stories.',
 };
 
 import { supabase } from '@/supabaseClient';

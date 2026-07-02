@@ -5,16 +5,16 @@ import ThemeLayout from '@/components/ThemeLayout';
 export const metadata = {
   metadataBase: new URL('https://glidein.in'),
   title: {
-    default: 'Glidein Studios | Creative Video Production & Digital Marketing Agency',
-    template: '%s | Glidein Studios',
+    default: 'Glide.in Studios | Video Production & Performance Marketing Agency',
+    template: '%s | Glide.in Studios',
   },
-  description: 'Glidein Studios is a premium creative agency combining cinematic video production, performance marketing, and branding. We craft high-converting campaigns.',
-  keywords: ['video production agency', 'digital marketing agency', 'creative production house', 'cinematic brand videos', 'commercial film production', 'performance marketing', 'UI/UX design'],
+  description: 'Glide.in Studios is a premium creative agency combining cinematic video production, performance marketing, and branding. We craft high-converting campaigns across Indore, Bhopal, Ujjain, Madhya Pradesh, and India.',
+  keywords: ['video production agency', 'growth marketing agency', 'creative production house', 'cinematic brand videos', 'commercial film production', 'performance marketing', 'UI/UX design', 'Indore agency', 'Bhopal studio', 'Ujjain video creators', 'Madhya Pradesh marketing'],
   openGraph: {
-    title: 'Glidein Studios | Creative Video Production & Digital Marketing Agency',
+    title: 'Glide.in Studios | Video Production & Performance Marketing Agency',
     description: 'Elevate your brand with cinematic production and data-driven performance marketing.',
     url: 'https://glidein.in',
-    siteName: 'Glidein Studios',
+    siteName: 'Glide.in Studios',
     locale: 'en_US',
     type: 'website',
     images: [
@@ -22,13 +22,13 @@ export const metadata = {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'Glidein Studios Creative Showreel',
+        alt: 'Glide.in Studios Creative Showreel',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Glidein Studios | Creative Agency',
+    title: 'Glide.in Studios | Creative Agency',
     description: 'Cinematic storytelling and data-driven marketing campaigns.',
     images: ['/og-image.png'],
   },

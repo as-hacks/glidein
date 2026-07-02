@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Insights & Articles | Glidein Studios',
-  description: 'Read our latest thoughts, stories and ideas on video production, digital marketing, and design.',
+  title: { absolute: 'Video Production & Growth Marketing Insights | Glide.in Studios' },
+  description: 'Read the latest trends, guides, and thoughts on filmmaking, video editing, social media branding, and performance marketing in Madhya Pradesh, India.',
 };
 
 import { supabase } from '@/supabaseClient';

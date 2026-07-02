@@ -1,6 +1,6 @@
 export const metadata = {
-  title: 'Portfolio | Glidein Studios',
-  description: 'Explore our latest video production and digital marketing projects.',
+  title: { absolute: 'Creative Portfolio & Case Studies | Glide.in Studios' },
+  description: 'Explore our latest cinematic corporate videos, brand ads, social campaigns, and performance marketing projects executed in Indore, Bhopal, Ujjain, and India.',
 };
 
 import PortfolioListClient from '@/components/PortfolioListClient';
