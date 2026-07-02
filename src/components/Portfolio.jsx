@@ -167,7 +167,7 @@ const Portfolio = () => {
               <h2 className="section-title">Portfolio</h2>
               <p className="section-desc">We've partnered with market leaders and major brands to help them bring their creative vision to life.</p>
               <div className="scroll-indicator">
-                <span>Scroll to explore</span>
+                <span>Scroll Down to Explore</span>
                 <div className="arrow-right">→</div>
               </div>
             </div>
