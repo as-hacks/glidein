@@ -4,6 +4,16 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import Cursor from './Cursor';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+
+// Register ScrollTrigger globally and ignore vertical resize events on mobile
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({
+    ignoreMobileResize: true
+  });
+}
 
 export default function ThemeLayout({ children, settings }) {
   const [theme, setTheme] = useState("dark");

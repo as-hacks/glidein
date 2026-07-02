@@ -62,7 +62,7 @@ const Portfolio = () => {
               scrollTrigger: {
                 trigger: containerRef.current,
                 pin: true,
-                scrub: true,
+                scrub: 1,
                 start: 'top top',
                 end: () => wrapperRef.current
                   ? `+=${wrapperRef.current.scrollWidth - window.innerWidth}`
@@ -101,7 +101,7 @@ const Portfolio = () => {
                     containerAnimation: scrollTween,
                     start: 'left right',
                     end: 'center center',
-                    scrub: true,
+                    scrub: 1,
                   },
                 }
               );
@@ -118,7 +118,7 @@ const Portfolio = () => {
                     containerAnimation: scrollTween,
                     start: 'left right',
                     end: 'center center',
-                    scrub: true,
+                    scrub: 1,
                   },
                 }
               );
@@ -135,7 +135,7 @@ const Portfolio = () => {
                     containerAnimation: scrollTween,
                     start: 'left right',
                     end: 'left center',
-                    scrub: true,
+                    scrub: 1,
                   },
                 }
               );

@@ -69,7 +69,7 @@ const Services = () => {
                     trigger: card,
                     start: `top ${startVh}%`,
                     end:   `top ${endVh}%`,
-                    scrub: true, // snappy linear scrub
+                    scrub: 1, // smooth interpolation on scroll
                   },
                 }
               );
