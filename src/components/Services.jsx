@@ -55,7 +55,7 @@ const Services = () => {
               // scroll position → left-to-right stagger.
               const step = 15; // viewport-% gap between consecutive cards
               const startVh = 88 - colIndex * step;
-              const endVh   = 62 - colIndex * step;
+              const endVh = 62 - colIndex * step;
 
               gsap.fromTo(
                 card,
@@ -68,14 +68,14 @@ const Services = () => {
                   scrollTrigger: {
                     trigger: card,
                     start: `top ${startVh}%`,
-                    end:   `top ${endVh}%`,
+                    end: `top ${endVh}%`,
                     scrub: 1, // smooth interpolation on scroll
                   },
                 }
               );
             });
           });
-          
+
           // Hide services section cleanly once it leaves viewport, preventing overlap with pinned transparent Portfolio
           ScrollTrigger.create({
             trigger: containerRef.current,
@@ -150,7 +150,7 @@ const Services = () => {
         <div className="services-grid">
           {services.map((service, index) => {
             const displayIcon = getServiceIcon(service.icon, index);
-            
+
             return (
               <Link href={`/service/${service.id}`} key={service.id} className="service-card glass-panel">
                 <div className="service-icon">{displayIcon}</div>

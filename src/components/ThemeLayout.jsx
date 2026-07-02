@@ -49,7 +49,7 @@ export default function ThemeLayout({ children, settings }) {
       } else {
         if (settings.primary_color_light) document.documentElement.style.setProperty('--primary-color', settings.primary_color_light);
         else document.documentElement.style.removeProperty('--primary-color');
-        
+
         if (settings.secondary_color_light) document.documentElement.style.setProperty('--secondary-color', settings.secondary_color_light);
         else document.documentElement.style.removeProperty('--secondary-color');
       }
