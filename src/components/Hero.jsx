@@ -46,7 +46,7 @@ const Hero = ({ settings }) => {
   }, []);
 
   const renderHeadline = () => {
-    if (!settings?.hero_headline) return <><span className="gradient-text">Your Vision,</span><br/>Elevated.</>;
+    if (!settings?.hero_headline) return <><span className="gradient-text">Your Vision,</span><br/>Elevated</>;
     return <span dangerouslySetInnerHTML={{ __html: settings.hero_headline }} />;
   };
 
