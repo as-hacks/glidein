@@ -106,7 +106,7 @@ const Navbar = ({ settings, theme, toggleTheme }) => {
       </div>
 
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
-        <li><a href="#" onClick={(e) => handleScrollTo(e, 'services')}>Servicesssss</a></li>
+        <li><a href="#" onClick={(e) => handleScrollTo(e, 'services')}>Services</a></li>
         <li><a href="#" onClick={(e) => handleScrollTo(e, 'portfolio')}>Work</a></li>
         <li><a href="#" onClick={(e) => handleScrollTo(e, 'why-us')}>About</a></li>
         <li><Link href="/blog" onClick={closeMenu}>Blog</Link></li>
