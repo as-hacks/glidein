@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './Hero.css';
 
@@ -9,6 +9,32 @@ const Hero = ({ settings }) => {
   const subheadRef = useRef();
   const ctaRef = useRef();
   const interactiveOrbRef = useRef(null);
+  const [hasFinePointer, setHasFinePointer] = useState(false);
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    setHasFinePointer(mediaQuery.matches);
+
+    const handleChange = (e) => {
+      setHasFinePointer(e.matches);
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     // Reduced delay since there is no paper plane animation anymore
@@ -16,6 +42,10 @@ const Hero = ({ settings }) => {
     tl.fromTo(headlineRef.current, { y: 80, opacity: 0, rotationX: 15 }, { y: 0, opacity: 1, rotationX: 0, duration: 1.2, ease: 'power4.out' })
       .fromTo(subheadRef.current, { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1, ease: 'power3.out' }, '-=0.8')
       .fromTo(ctaRef.current.children, { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'back.out(1.7)' }, '-=0.6');
+  }, []);
+
+  useEffect(() => {
+    if (!hasFinePointer) return;
 
     // Liquid cursor effect
     const orb = interactiveOrbRef.current;
@@ -43,7 +73,7 @@ const Hero = ({ settings }) => {
         heroSection.removeEventListener("mousemove", handleMouseMove);
       };
     }
-  }, []);
+  }, [hasFinePointer]);
 
   const renderHeadline = () => {
     if (!settings?.hero_headline) return <><span className="gradient-text">Your Vision,</span><br/>Elevated.</>;
@@ -59,8 +89,8 @@ const Hero = ({ settings }) => {
         ref={interactiveOrbRef}
         className="glow-orb" 
         style={{ 
-          top: 0, 
-          left: 0, 
+          top: hasFinePointer ? 0 : '30%', 
+          left: hasFinePointer ? 0 : '25%', 
           width: '500px', 
           height: '500px', 
           position: 'absolute', 
@@ -68,7 +98,7 @@ const Hero = ({ settings }) => {
           zIndex: 0, 
           opacity: 0.4,
           background: 'radial-gradient(circle, var(--primary-glow) 0%, transparent 70%)',
-          animation: 'none' // Disable float animation so it strictly follows cursor
+          animation: hasFinePointer ? 'none' : 'float 12s infinite alternate ease-in-out'
         }}
       ></div>
 

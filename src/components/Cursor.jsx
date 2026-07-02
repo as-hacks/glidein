@@ -1,14 +1,43 @@
 "use client";
 
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import './Cursor.css';
 
 const Cursor = () => {
   const cursorRef = useRef(null);
   const dotRef = useRef(null);
-  
+  const [hasFinePointer, setHasFinePointer] = useState(false);
+
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
+    // Check if the device has a fine pointer (mouse/trackpad)
+    const mediaQuery = window.matchMedia('(pointer: fine)');
+    setHasFinePointer(mediaQuery.matches);
+
+    const handleChange = (e) => {
+      setHasFinePointer(e.matches);
+    };
+
+    if (mediaQuery.addEventListener) {
+      mediaQuery.addEventListener('change', handleChange);
+    } else {
+      mediaQuery.addListener(handleChange);
+    }
+
+    return () => {
+      if (mediaQuery.removeEventListener) {
+        mediaQuery.removeEventListener('change', handleChange);
+      } else {
+        mediaQuery.removeListener(handleChange);
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!hasFinePointer) return;
+
     const cursor = cursorRef.current;
     const dot = dotRef.current;
     if (!cursor || !dot) return;
@@ -34,9 +63,9 @@ const Cursor = () => {
     return () => {
       window.removeEventListener("mousemove", onMouseMove);
     };
-  }, []);
+  }, [hasFinePointer]);
 
-  if (typeof window === 'undefined') return null;
+  if (!hasFinePointer) return null;
 
   return (
     <>
