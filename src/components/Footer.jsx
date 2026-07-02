@@ -44,7 +44,19 @@ const Footer = ({ settings }) => {
         <div className="footer-links">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#" onClick={(e) => handleScrollTo(e, 'hero')}>Home</a></li>
+            <li>
+              <Link
+                href="/"
+                onClick={(e) => {
+                  if (pathname === '/') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
+                }}
+              >
+                Home
+              </Link>
+            </li>
             <li><a href="#" onClick={(e) => handleScrollTo(e, 'services')}>Services</a></li>
             <li><a href="#" onClick={(e) => handleScrollTo(e, 'portfolio')}>Work</a></li>
             <li><a href="#" onClick={(e) => handleScrollTo(e, 'why-us')}>About</a></li>

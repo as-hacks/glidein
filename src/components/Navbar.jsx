@@ -110,6 +110,20 @@ const Navbar = ({ settings, theme, toggleTheme }) => {
       </div>
 
       <ul className={`nav-links ${menuOpen ? 'open' : ''}`}>
+        <li>
+          <Link
+            href="/"
+            onClick={(e) => {
+              closeMenu();
+              if (pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
+            Home
+          </Link>
+        </li>
         <li><a href="#" onClick={(e) => handleScrollTo(e, 'services')}>Services</a></li>
         <li><a href="#" onClick={(e) => handleScrollTo(e, 'portfolio')}>Work</a></li>
         <li><a href="#" onClick={(e) => handleScrollTo(e, 'why-us')}>About</a></li>
