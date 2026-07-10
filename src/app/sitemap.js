@@ -1,5 +1,4 @@
 import { supabase } from '@/supabaseClient';
-import { locationsRegistry } from '@/data/locations';
 import { slugify } from '@/utils/slugify';
 
 export default async function sitemap() {
@@ -39,12 +38,21 @@ export default async function sitemap() {
     },
   ];
 
-  const locationUrls = Object.keys(locationsRegistry).map((slug) => ({
-    url: `${baseUrl}/location/${slug}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.7,
-  }));
+  let locationUrls = [];
+  try {
+    const { data: dbLocations } = await supabase
+      .from('locations')
+      .select('slug');
+    
+    locationUrls = (dbLocations || []).map((loc) => ({
+      url: `${baseUrl}/location/${loc.slug}`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.7,
+    }));
+  } catch (err) {
+    console.error('Error fetching locations for sitemap:', err);
+  }
 
   try {
     // Dynamic Portfolio Project URLs

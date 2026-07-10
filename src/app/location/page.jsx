@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { locationsRegistry } from '@/data/locations';
+import { supabase } from '@/supabaseClient';
 import '@/components/LocationPage.css';
 
 export const metadata = {
@@ -9,11 +9,14 @@ export const metadata = {
   keywords: ['locations', 'video production ujjain', 'marketing agency indore', 'seo agency bhopal', 'glidein locations'],
 };
 
-export default function LocationDirectoryPage() {
-  const items = Object.values(locationsRegistry);
+export default async function LocationDirectoryPage() {
+  const { data: items } = await supabase
+    .from('locations')
+    .select('*')
+    .order('location', { ascending: true });
 
   // Group by location to make it highly structured
-  const locationsMap = items.reduce((acc, curr) => {
+  const locationsMap = (items || []).reduce((acc, curr) => {
     if (!acc[curr.location]) {
       acc[curr.location] = [];
     }
@@ -69,7 +72,7 @@ export default function LocationDirectoryPage() {
                           {item.service} in {item.location}
                         </h3>
                         <p className="card-desc">
-                          {item.metaDesc}
+                          {item.meta_desc}
                         </p>
                       </div>
 

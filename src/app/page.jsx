@@ -21,7 +21,7 @@ export default async function Home() {
   }
 
   // Fetch services for contact form
-  const { data: services } = await supabase.from('services').select('*');
+  const { data: services } = await supabase.from('services').select('*').eq('is_visible', true);
 
   // Fetch settings
   const { data: settings } = await supabase.from('site_settings').select('*').eq('id', 1).single();

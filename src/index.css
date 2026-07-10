@@ -26,6 +26,7 @@
   /* Service card title gradient — dark theme */
   --card-title-from: #ffffff;
   --card-title-to: #a0a0a5;
+  --logo-filter: brightness(0) invert(1);
 }
 
 [data-theme="light"] {
@@ -43,6 +44,7 @@
   --primary-glow: rgba(161, 92, 56, 0.3);
   --secondary-glow: rgba(195, 166, 160, 0.3);
   --grid-color: rgba(38, 34, 32, 0.04);
+  --logo-filter: brightness(0) opacity(0.8);
 
   /* Service card title gradient — light theme */
   --card-title-from: #262220;

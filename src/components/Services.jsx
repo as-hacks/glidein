@@ -24,6 +24,7 @@ const Services = () => {
     const { data, error } = await supabase
       .from('services')
       .select('*')
+      .eq('is_visible', true)
       .order('id', { ascending: true });
 
     if (error) {

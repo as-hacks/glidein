@@ -41,7 +41,7 @@ const Admin = ({ fetchCMSData }) => {
 
   const [visibility, setVisibility] = useState({});
   const [services, setServices] = useState([]);
-  const [newService, setNewService] = useState({ title: '', description: '', category: '', content: '' });
+  const [newService, setNewService] = useState({ title: '', description: '', category: '', content: '', is_visible: true });
   const [imageFile, setImageFile] = useState(null);
 
   const [tools, setTools] = useState([]);
@@ -53,6 +53,29 @@ const Admin = ({ fetchCMSData }) => {
 
   const [editingServiceId, setEditingServiceId] = useState(null);
   const [editingBlogId, setEditingBlogId] = useState(null);
+
+  // Dynamic Location CMS States
+  const [locations, setLocations] = useState([]);
+  const [editingLocationSlug, setEditingLocationSlug] = useState(null);
+  const [locationHeroFile, setLocationHeroFile] = useState(null);
+  const [newLocation, setNewLocation] = useState({
+    slug: '',
+    location: '',
+    service: '',
+    title: '',
+    meta_desc: '',
+    keywords: '',
+    hero_headline: '',
+    hero_subhead: '',
+    hero_image_url: '',
+    showreel_url: '',
+    seo_title: '',
+    seo_content: '',
+    faqs: [],
+    why_choose_us: [],
+    testimonials: [],
+    timeline: []
+  });
 
   useEffect(() => {
     const checkSession = async () => {
@@ -92,6 +115,9 @@ const Admin = ({ fetchCMSData }) => {
 
     const { data: portData } = await supabase.from('portfolio').select('*').order('created_at', { ascending: false });
     if (portData) setPortfolios(portData);
+
+    const { data: locData } = await supabase.from('locations').select('*').order('created_at', { ascending: false });
+    if (locData) setLocations(locData);
   };
 
   const handleLogin = async (e) => {
@@ -180,14 +206,20 @@ const Admin = ({ fetchCMSData }) => {
 
   const handleEditService = (service) => {
     setEditingServiceId(service.id);
-    setNewService({ title: service.title, description: service.description, category: service.category, content: service.content || '' });
+    setNewService({ 
+      title: service.title, 
+      description: service.description, 
+      category: service.category, 
+      content: service.content || '', 
+      is_visible: service.is_visible !== false 
+    });
     setImageFile(null);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const cancelEditService = () => {
     setEditingServiceId(null);
-    setNewService({ title: '', description: '', category: '', content: '' });
+    setNewService({ title: '', description: '', category: '', content: '', is_visible: true });
     setImageFile(null);
   };
 
@@ -565,6 +597,122 @@ const Admin = ({ fetchCMSData }) => {
     }
   };
 
+  const handleSaveLocation = async (e) => {
+    e.preventDefault();
+    setStatus(editingLocationSlug ? 'Updating location...' : 'Adding location...');
+
+    let hero_image_url = newLocation.hero_image_url;
+
+    if (locationHeroFile) {
+      const fileExt = locationHeroFile.name.split('.').pop();
+      const fileName = `location-${Math.random()}.${fileExt}`;
+      const { error: uploadError } = await supabase.storage.from('images').upload(fileName, locationHeroFile);
+      if (!uploadError) {
+        const { data } = supabase.storage.from('images').getPublicUrl(fileName);
+        hero_image_url = data.publicUrl;
+      }
+    }
+
+    const keywordsArray = typeof newLocation.keywords === 'string'
+      ? newLocation.keywords.split(',').map(k => k.trim()).filter(Boolean)
+      : newLocation.keywords || [];
+
+    const payload = {
+      slug: newLocation.slug.trim(),
+      location: newLocation.location.trim(),
+      service: newLocation.service.trim(),
+      title: newLocation.title.trim(),
+      meta_desc: newLocation.meta_desc.trim(),
+      keywords: keywordsArray,
+      hero_headline: newLocation.hero_headline.trim(),
+      hero_subhead: newLocation.hero_subhead.trim(),
+      hero_image_url,
+      showreel_url: newLocation.showreel_url.trim(),
+      seo_title: newLocation.seo_title.trim(),
+      seo_content: newLocation.seo_content.trim(),
+      faqs: newLocation.faqs,
+      why_choose_us: newLocation.why_choose_us,
+      testimonials: newLocation.testimonials,
+      timeline: newLocation.timeline
+    };
+
+    let error;
+    if (editingLocationSlug) {
+      const res = await supabase.from('locations').update(payload).eq('slug', editingLocationSlug);
+      error = res.error;
+    } else {
+      const res = await supabase.from('locations').insert([payload]);
+      error = res.error;
+    }
+
+    if (!error) {
+      setStatus(editingLocationSlug ? 'Location updated!' : 'Location added!');
+      cancelEditLocation();
+      loadCMSData();
+    } else {
+      setStatus('Error: ' + error.message);
+    }
+  };
+
+  const handleDeleteLocation = async (slug) => {
+    if (window.confirm('Are you sure you want to delete this location page?')) {
+      setStatus('Deleting location...');
+      const { error } = await supabase.from('locations').delete().eq('slug', slug);
+      if (!error) {
+        setStatus('Location deleted!');
+        loadCMSData();
+      } else {
+        setStatus('Error deleting location: ' + error.message);
+      }
+    }
+  };
+
+  const cancelEditLocation = () => {
+    setEditingLocationSlug(null);
+    setLocationHeroFile(null);
+    setNewLocation({
+      slug: '',
+      location: '',
+      service: '',
+      title: '',
+      meta_desc: '',
+      keywords: '',
+      hero_headline: '',
+      hero_subhead: '',
+      hero_image_url: '',
+      showreel_url: '',
+      seo_title: '',
+      seo_content: '',
+      faqs: [],
+      why_choose_us: [],
+      testimonials: [],
+      timeline: []
+    });
+  };
+
+  const handleEditLocation = (loc) => {
+    setEditingLocationSlug(loc.slug);
+    setLocationHeroFile(null);
+    setNewLocation({
+      slug: loc.slug,
+      location: loc.location,
+      service: loc.service,
+      title: loc.title,
+      meta_desc: loc.meta_desc,
+      keywords: Array.isArray(loc.keywords) ? loc.keywords.join(', ') : '',
+      hero_headline: loc.hero_headline || '',
+      hero_subhead: loc.hero_subhead || '',
+      hero_image_url: loc.hero_image_url || '',
+      showreel_url: loc.showreel_url || '',
+      seo_title: loc.seo_title || '',
+      seo_content: loc.seo_content || '',
+      faqs: Array.isArray(loc.faqs) ? loc.faqs : [],
+      why_choose_us: Array.isArray(loc.why_choose_us) ? loc.why_choose_us : [],
+      testimonials: Array.isArray(loc.testimonials) ? loc.testimonials : [],
+      timeline: Array.isArray(loc.timeline) ? loc.timeline : []
+    });
+  };
+
   if (!isAuthenticated) {
     return (
       <div className="admin-login glass-panel" style={{ margin: '100px auto', maxWidth: '400px', padding: '40px', textAlign: 'center' }}>
@@ -590,6 +738,7 @@ const Admin = ({ fetchCMSData }) => {
           <li className={activeTab === 'tech_stack' ? 'active' : ''} onClick={() => setActiveTab('tech_stack')}>Tech Stack</li>
           <li className={activeTab === 'blogs' ? 'active' : ''} onClick={() => setActiveTab('blogs')}>Blogs</li>
           <li className={activeTab === 'portfolio' ? 'active' : ''} onClick={() => setActiveTab('portfolio')}>Portfolio</li>
+          <li className={activeTab === 'locations' ? 'active' : ''} onClick={() => setActiveTab('locations')}>Locations</li>
         </ul>
         <a href="/" className="btn-outline" style={{ marginTop: 'auto', display: 'block', textAlign: 'center' }}>Back to Site</a>
         <button onClick={handleLogout} className="btn-outline" style={{ marginTop: '10px', display: 'block', width: '100%', textAlign: 'center', borderColor: '#ff4d4d', color: '#ff4d4d', background: 'transparent', cursor: 'pointer' }}>Logout</button>
@@ -692,6 +841,18 @@ const Admin = ({ fetchCMSData }) => {
               <input type="text" placeholder="Category" value={newService.category} onChange={e => setNewService({ ...newService, category: e.target.value })} required />
               <textarea placeholder="Short Description (for homepage card)" value={newService.description} onChange={e => setNewService({ ...newService, description: e.target.value })} required rows="2"></textarea>
               <textarea placeholder="Full Description (HTML supported, for dedicated page)" value={newService.content} onChange={e => setNewService({ ...newService, content: e.target.value })} required rows="6"></textarea>
+              
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', margin: '15px 0' }}>
+                <input 
+                  type="checkbox" 
+                  id="service-is-visible"
+                  checked={newService.is_visible} 
+                  onChange={e => setNewService({ ...newService, is_visible: e.target.checked })} 
+                  style={{ width: 'auto', cursor: 'pointer' }}
+                />
+                <label htmlFor="service-is-visible" style={{ cursor: 'pointer', margin: 0 }}>Show on Site (Visible on all pages)</label>
+              </div>
+
               <label>{editingServiceId ? 'Update Background Image (leave blank to keep current):' : 'Optional Background Image:'}</label>
               <input type="file" accept="image/*" onChange={e => setImageFile(e.target.files[0])} />
               <div style={{ display: 'flex', gap: '10px' }}>
@@ -704,9 +865,14 @@ const Admin = ({ fetchCMSData }) => {
 
             <div className="admin-list">
               {services.map(s => (
-                <div key={s.id} className="admin-list-item glass-panel" style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', marginBottom: '10px' }}>
+                <div key={s.id} className="admin-list-item glass-panel" style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', marginBottom: '10px', alignItems: 'center' }}>
                   <div>
                     <strong>{s.title}</strong> - {s.category}
+                    {s.is_visible === false ? (
+                      <span style={{ color: '#ff4d4d', marginLeft: '10px', fontSize: '0.85rem', padding: '2px 8px', background: 'rgba(255, 77, 77, 0.1)', borderRadius: '4px' }}>Hidden</span>
+                    ) : (
+                      <span style={{ color: '#2eb82e', marginLeft: '10px', fontSize: '0.85rem', padding: '2px 8px', background: 'rgba(46, 184, 46, 0.1)', borderRadius: '4px' }}>Visible</span>
+                    )}
                   </div>
                   <div>
                     <button onClick={() => handleEditService(s)} style={{ background: 'rgba(0,123,255,0.2)', color: '#66b3ff', border: '1px solid #007bff', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>Edit</button>
@@ -952,6 +1118,203 @@ const Admin = ({ fetchCMSData }) => {
                   <div>
                     <button onClick={() => handleEditPortfolio(p)} style={{ background: 'rgba(0,123,255,0.2)', color: '#66b3ff', border: '1px solid #007bff', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>Edit</button>
                     <button onClick={() => handleDeletePortfolio(p.id)} style={{ background: 'rgba(255,0,0,0.2)', color: 'white', border: '1px solid red', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer' }}>Delete</button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {activeTab === 'locations' && (
+          <div className="tab-pane">
+            <h3>Manage Target Locations</h3>
+            <form onSubmit={handleSaveLocation} className="admin-form" style={{ marginBottom: '40px', padding: '20px', background: 'rgba(255,255,255,0.05)', borderRadius: '12px' }}>
+              <h4>{editingLocationSlug ? 'Edit Location Page' : 'Add New Location Page'}</h4>
+              
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                <div>
+                  <label>Location Name (e.g. Ujjain, Indore, Madhya Pradesh):</label>
+                  <input type="text" placeholder="Ujjain" value={newLocation.location} onChange={e => setNewLocation({ ...newLocation, location: e.target.value })} required />
+                </div>
+                <div>
+                  <label>Service Category (e.g. Video Production, Growth Marketing):</label>
+                  <input type="text" placeholder="Video Production" value={newLocation.service} onChange={e => setNewLocation({ ...newLocation, service: e.target.value })} required />
+                </div>
+              </div>
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                <div>
+                  <label>URL Slug (e.g. video-production-ujjain):</label>
+                  <input type="text" placeholder="video-production-ujjain" value={newLocation.slug} onChange={e => setNewLocation({ ...newLocation, slug: e.target.value.toLowerCase().replace(/\s+/g, '-') })} required disabled={editingLocationSlug !== null} />
+                </div>
+                <div>
+                  <label>Page Title (for SEO browser tab & head):</label>
+                  <input type="text" placeholder="Video Production in Ujjain | Glide.in Studios" value={newLocation.title} onChange={e => setNewLocation({ ...newLocation, title: e.target.value })} required />
+                </div>
+              </div>
+
+              <label>Meta Description (for search results snippet):</label>
+              <textarea placeholder="Get premium cinematic video production services..." value={newLocation.meta_desc} onChange={e => setNewLocation({ ...newLocation, meta_desc: e.target.value })} required rows="2" />
+
+              <label>Keywords (comma-separated):</label>
+              <input type="text" placeholder="video production, ujjain, videography" value={newLocation.keywords} onChange={e => setNewLocation({ ...newLocation, keywords: e.target.value })} />
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>Hero Section</h5>
+              
+              <label>Hero Amazing Headline:</label>
+              <input type="text" placeholder="Cinematic Video Production in Ujjain" value={newLocation.hero_headline} onChange={e => setNewLocation({ ...newLocation, hero_headline: e.target.value })} required />
+
+              <label>Hero Description Subheading:</label>
+              <textarea placeholder="We craft cinematic videos and stories..." value={newLocation.hero_subhead} onChange={e => setNewLocation({ ...newLocation, hero_subhead: e.target.value })} required rows="2" />
+
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '15px', marginBottom: '15px' }}>
+                <div>
+                  <label>Hero Background Image URL (or upload below):</label>
+                  <input type="text" placeholder="https://..." value={newLocation.hero_image_url} onChange={e => setNewLocation({ ...newLocation, hero_image_url: e.target.value })} />
+                </div>
+                <div>
+                  <label>Upload Hero Image File:</label>
+                  <input type="file" accept="image/*" onChange={e => setLocationHeroFile(e.target.files[0])} />
+                </div>
+              </div>
+
+              <label>Showreel Video Embed URL (YouTube embed link or direct video url):</label>
+              <input type="text" placeholder="https://www.youtube.com/embed/..." value={newLocation.showreel_url} onChange={e => setNewLocation({ ...newLocation, showreel_url: e.target.value })} />
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>How Glide.in Works (Timeline steps)</h5>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '8px', marginBottom: '15px' }}>
+                {newLocation.timeline.map((step, idx) => (
+                  <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+                    <input type="text" placeholder={`Step ${idx + 1} Title`} value={step.title || ''} onChange={e => {
+                      const updated = [...newLocation.timeline];
+                      updated[idx].title = e.target.value;
+                      setNewLocation({ ...newLocation, timeline: updated });
+                    }} required />
+                    <input type="text" placeholder={`Step ${idx + 1} Description`} value={step.desc || ''} onChange={e => {
+                      const updated = [...newLocation.timeline];
+                      updated[idx].desc = e.target.value;
+                      setNewLocation({ ...newLocation, timeline: updated });
+                    }} required />
+                    <button type="button" onClick={() => {
+                      const updated = newLocation.timeline.filter((_, i) => i !== idx);
+                      setNewLocation({ ...newLocation, timeline: updated });
+                    }} style={{ background: 'rgba(255,0,0,0.15)', color: '#ff4d4d', border: '1px solid rgba(255,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', cursor: 'pointer' }}>×</button>
+                  </div>
+                ))}
+                <button type="button" className="btn-outline" onClick={() => {
+                  setNewLocation({ ...newLocation, timeline: [...newLocation.timeline, { title: '', desc: '' }] });
+                }} style={{ marginTop: '5px' }}>+ Add Step</button>
+              </div>
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>Why Businesses Choose Glide (Cards)</h5>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '8px', marginBottom: '15px' }}>
+                {newLocation.why_choose_us.map((card, idx) => (
+                  <div key={idx} style={{ display: 'grid', gridTemplateColumns: '1fr 2fr auto', gap: '10px', alignItems: 'center', marginBottom: '10px' }}>
+                    <input type="text" placeholder="Title" value={card.title || ''} onChange={e => {
+                      const updated = [...newLocation.why_choose_us];
+                      updated[idx].title = e.target.value;
+                      setNewLocation({ ...newLocation, why_choose_us: updated });
+                    }} required />
+                    <input type="text" placeholder="Description" value={card.desc || ''} onChange={e => {
+                      const updated = [...newLocation.why_choose_us];
+                      updated[idx].desc = e.target.value;
+                      setNewLocation({ ...newLocation, why_choose_us: updated });
+                    }} required />
+                    <button type="button" onClick={() => {
+                      const updated = newLocation.why_choose_us.filter((_, i) => i !== idx);
+                      setNewLocation({ ...newLocation, why_choose_us: updated });
+                    }} style={{ background: 'rgba(255,0,0,0.15)', color: '#ff4d4d', border: '1px solid rgba(255,0,0,0.3)', padding: '8px 12px', borderRadius: '6px', cursor: 'pointer' }}>×</button>
+                  </div>
+                ))}
+                <button type="button" className="btn-outline" onClick={() => {
+                  setNewLocation({ ...newLocation, why_choose_us: [...newLocation.why_choose_us, { title: '', desc: '' }] });
+                }} style={{ marginTop: '5px' }}>+ Add Reason Card</button>
+              </div>
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>Testimonials</h5>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '8px', marginBottom: '15px' }}>
+                {newLocation.testimonials.map((t, idx) => (
+                  <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px', borderBottom: '1px dashed rgba(255,255,255,0.1)', paddingBottom: '10px' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
+                      <input type="text" placeholder="Client Name" value={t.name || ''} onChange={e => {
+                        const updated = [...newLocation.testimonials];
+                        updated[idx].name = e.target.value;
+                        setNewLocation({ ...newLocation, testimonials: updated });
+                      }} required />
+                      <input type="text" placeholder="Client Role / Company" value={t.role || ''} onChange={e => {
+                        const updated = [...newLocation.testimonials];
+                        updated[idx].role = e.target.value;
+                        setNewLocation({ ...newLocation, testimonials: updated });
+                      }} required />
+                    </div>
+                    <textarea placeholder="Testimonial Quote text" value={t.text || ''} onChange={e => {
+                      const updated = [...newLocation.testimonials];
+                      updated[idx].text = e.target.value;
+                      setNewLocation({ ...newLocation, testimonials: updated });
+                    }} required rows="2" />
+                    <button type="button" onClick={() => {
+                      const updated = newLocation.testimonials.filter((_, i) => i !== idx);
+                      setNewLocation({ ...newLocation, testimonials: updated });
+                    }} style={{ width: 'fit-content', background: 'rgba(255,0,0,0.15)', color: '#ff4d4d', border: '1px solid rgba(255,0,0,0.3)', padding: '5px 12px', borderRadius: '6px', cursor: 'pointer' }}>Remove Testimonial</button>
+                  </div>
+                ))}
+                <button type="button" className="btn-outline" onClick={() => {
+                  setNewLocation({ ...newLocation, testimonials: [...newLocation.testimonials, { name: '', role: '', text: '' }] });
+                }} style={{ marginTop: '5px' }}>+ Add Testimonial</button>
+              </div>
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>FAQs Accordion</h5>
+              <div style={{ background: 'rgba(255,255,255,0.02)', padding: '15px', borderRadius: '8px', marginBottom: '15px' }}>
+                {newLocation.faqs.map((faq, idx) => (
+                  <div key={idx} style={{ display: 'flex', flexDirection: 'column', gap: '10px', marginBottom: '15px', borderBottom: '1px dashed rgba(255,255,255,0.1)', paddingBottom: '10px' }}>
+                    <input type="text" placeholder="Question" value={faq.q || ''} onChange={e => {
+                      const updated = [...newLocation.faqs];
+                      updated[idx].q = e.target.value;
+                      setNewLocation({ ...newLocation, faqs: updated });
+                    }} required />
+                    <textarea placeholder="Answer" value={faq.a || ''} onChange={e => {
+                      const updated = [...newLocation.faqs];
+                      updated[idx].a = e.target.value;
+                      setNewLocation({ ...newLocation, faqs: updated });
+                    }} required rows="2" />
+                    <button type="button" onClick={() => {
+                      const updated = newLocation.faqs.filter((_, i) => i !== idx);
+                      setNewLocation({ ...newLocation, faqs: updated });
+                    }} style={{ width: 'fit-content', background: 'rgba(255,0,0,0.15)', color: '#ff4d4d', border: '1px solid rgba(255,0,0,0.3)', padding: '5px 12px', borderRadius: '6px', cursor: 'pointer' }}>Remove FAQ</button>
+                  </div>
+                ))}
+                <button type="button" className="btn-outline" onClick={() => {
+                  setNewLocation({ ...newLocation, faqs: [...newLocation.faqs, { q: '', a: '' }] });
+                }} style={{ marginTop: '5px' }}>+ Add FAQ Item</button>
+              </div>
+
+              <h5 style={{ borderBottom: '1px solid rgba(255,255,255,0.1)', paddingBottom: '5px', marginTop: '25px', color: '#00f0ff' }}>SEO Long Form Article (800 - 1200 words)</h5>
+              <label>SEO Section Heading:</label>
+              <input type="text" placeholder="About Video Production in Ujjain" value={newLocation.seo_title} onChange={e => setNewLocation({ ...newLocation, seo_title: e.target.value })} required />
+
+              <label>SEO Article Content (HTML allowed - use &lt;p&gt;, &lt;h3&gt;, &lt;ul&gt;, &lt;li&gt;, etc.):</label>
+              <textarea placeholder="<p>Detailed SEO paragraph...</p>" value={newLocation.seo_content} onChange={e => setNewLocation({ ...newLocation, seo_content: e.target.value })} required rows="12" />
+
+              <div style={{ display: 'flex', gap: '10px', marginTop: '25px' }}>
+                <button type="submit" className="btn-solid glow-button">
+                  {editingLocationSlug ? 'Update Location' : 'Add Location'}
+                </button>
+                {editingLocationSlug && (
+                  <button type="button" onClick={cancelEditLocation} className="btn-cancel">Cancel</button>
+                )}
+              </div>
+            </form>
+
+            <div className="admin-list">
+              {locations.map(loc => (
+                <div key={loc.slug} className="admin-list-item glass-panel" style={{ display: 'flex', justifyContent: 'space-between', padding: '15px', marginBottom: '10px', alignItems: 'center' }}>
+                  <div>
+                    <strong>{loc.location}</strong> - <span>{loc.service}</span>
+                    <div style={{ fontSize: '0.8rem', color: '#aaa', marginTop: '4px' }}>Slug: /location/{loc.slug}</div>
+                  </div>
+                  <div>
+                    <button onClick={() => handleEditLocation(loc)} style={{ background: 'rgba(0,123,255,0.2)', color: '#66b3ff', border: '1px solid #007bff', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer', marginRight: '10px' }}>Edit</button>
+                    <button onClick={() => handleDeleteLocation(loc.slug)} style={{ background: 'rgba(255,0,0,0.2)', color: 'white', border: '1px solid red', padding: '5px 15px', borderRadius: '5px', cursor: 'pointer' }}>Delete</button>
                   </div>
                 </div>
               ))}
