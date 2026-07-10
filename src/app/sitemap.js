@@ -3,7 +3,7 @@ import { locationsRegistry } from '@/data/locations';
 import { slugify } from '@/utils/slugify';
 
 export default async function sitemap() {
-  const baseUrl = 'https://glidein.in';
+  const baseUrl = 'https://www.glidein.in';
 
   // Base static routes
   const routes = [

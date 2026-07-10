@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /admin/
 
-Sitemap: https://glidein.in/sitemap.xml
+Sitemap: https://www.glidein.in/sitemap.xml

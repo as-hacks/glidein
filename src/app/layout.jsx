@@ -3,7 +3,7 @@ import { supabase } from '@/supabaseClient';
 import ThemeLayout from '@/components/ThemeLayout';
 
 export const metadata = {
-  metadataBase: new URL('https://glidein.in'),
+  metadataBase: new URL('https://www.glidein.in'),
   title: {
     default: 'Glide.in Studios | Video Production & Performance Marketing Agency',
     template: '%s | Glide.in Studios',
@@ -13,7 +13,7 @@ export const metadata = {
   openGraph: {
     title: 'Glide.in Studios | Video Production & Performance Marketing Agency',
     description: 'Elevate your brand with cinematic production and data-driven performance marketing.',
-    url: 'https://glidein.in',
+    url: 'https://www.glidein.in',
     siteName: 'Glide.in Studios',
     locale: 'en_US',
     type: 'website',

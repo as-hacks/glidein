@@ -28,12 +28,12 @@ export async function generateMetadata({ params }) {
     description: content.metaDesc,
     keywords: content.keywords,
     alternates: {
-      canonical: `https://glidein.in/location/${slug}`,
+      canonical: `https://www.glidein.in/location/${slug}`,
     },
     openGraph: {
       title: { absolute: content.title },
       description: content.metaDesc,
-      url: `https://glidein.in/location/${slug}`,
+      url: `https://www.glidein.in/location/${slug}`,
       type: 'article',
     },
   };
