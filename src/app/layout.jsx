@@ -10,6 +10,15 @@ export const metadata = {
   },
   description: 'Glide.in Studios is a premium creative agency combining cinematic video production, performance marketing, and branding. We craft high-converting campaigns across Indore, Bhopal, Ujjain, Madhya Pradesh, and India.',
   keywords: ['video production agency', 'growth marketing agency', 'creative production house', 'cinematic brand videos', 'commercial film production', 'performance marketing', 'UI/UX design', 'Indore agency', 'Bhopal studio', 'Ujjain video creators', 'Madhya Pradesh marketing'],
+  icons: {
+    icon: [
+      { url: '/favicon.ico', sizes: 'any' },
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   openGraph: {
     title: 'Glide.in Studios | Video Production & Performance Marketing Agency',
     description: 'Elevate your brand with cinematic production and data-driven performance marketing.',
