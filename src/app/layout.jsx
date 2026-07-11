@@ -4,6 +4,7 @@ import ThemeLayout from '@/components/ThemeLayout';
 
 export const metadata = {
   metadataBase: new URL('https://www.glidein.in'),
+  applicationName: 'Glide.in Studios',
   title: {
     default: 'Glide.in Studios | Video Production & Performance Marketing Agency',
     template: '%s | Glide.in Studios',

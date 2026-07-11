@@ -26,14 +26,27 @@ export default async function Home() {
   // Fetch settings
   const { data: settings } = await supabase.from('site_settings').select('*').eq('id', 1).single();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Glide.in Studios',
+    url: 'https://www.glidein.in',
+  };
+
   return (
-    <LandingPageClient>
-      {visibility.hero && <Hero settings={settings} />}
-      {visibility.why_us && <WhyUs settings={settings} />}
-      <TechStack />
-      {visibility.services && <Services />}
-      {visibility.portfolio && <Portfolio />}
-      {visibility.contact && <Contact settings={settings} services={services || []} />}
-    </LandingPageClient>
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <LandingPageClient>
+        {visibility.hero && <Hero settings={settings} />}
+        {visibility.why_us && <WhyUs settings={settings} />}
+        <TechStack />
+        {visibility.services && <Services />}
+        {visibility.portfolio && <Portfolio />}
+        {visibility.contact && <Contact settings={settings} services={services || []} />}
+      </LandingPageClient>
+    </>
   );
 }
